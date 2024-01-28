@@ -35,7 +35,6 @@ function askQuestion() {
 
 }
 
-
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
@@ -47,17 +46,36 @@ function gradeQuiz(candidateAnswers) {
   // }
 
   
-
-  for (let i = 0; i < questions.length; i++) {
-    
-    console.log(`Your answer was -> ${candidateAnswers[i]}. The correct answer is ${correctAnswers[i]}`);
-    
-  }
+  // for (let i = 0; i < questions.length; i++) {
+  //   console.log(`Your answer was -> ${candidateAnswers[i]}. The correct answer is ${correctAnswers[i]}`); 
+  // }
   
 
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  //TODO 3.2 use this variable to calculate the candidates score.
+  let passingGrade = 80;
+  let correctCount = 0;
+  
 
+  for (let i = 0; i < questions.length; i++) {
+      if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+          console.log(`Question: ${questions[i]} -> Your answer was ${candidateAnswers[i]}. That is correct!`);
+          correctCount = correctCount + 1;
+          
+
+      } else {
+    console.log(`Question: ${questions[i]} -> Your answer was ${candidateAnswers[i]}. Sorry the correct answer is ${correctAnswers[i]}`);
+    
+  }
+      
+  }
+
+  let grade = (correctCount / questions.length) * 100;
+  if (grade >= passingGrade){ 
+      console.log(`Congratulations! You passed with ${grade}%`);
+      } else {
+      console.log(`Sorry you did not pass. your grade is ${grade}%`);
+  }
 
   return grade;
 }
